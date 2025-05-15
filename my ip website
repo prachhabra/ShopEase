@@ -1,0 +1,646 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="ShopEase - Your one-stop shop for electronics, beauty products, pharmacy items, fashion, and grocery">
+    <title>ShopEase - Your One-Stop Shop</title>
+    <!-- External CSS Links -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Payment Gateway Integration -->
+    <script src="https://js.stripe.com/v3/"></script>
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="stylee1.css">
+</head>
+<body>
+    <!-- Header Section -->
+        <header>
+            <div class="logo-container">
+                <div class="logo-text">ShopEase</div>
+                <img src="logo1.png" alt="shopease logo" class="logo">
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#home"><i class="fas fa-home"></i> Home</a></li>
+                    <li><a href="#products"><i class="fas fa-store"></i> Products</a></li>
+                    <li><a href="#cart"><i class="fas fa-shopping-cart"></i> Cart <span class="cart-count">0</span></a></li>
+                    <li><a href="#wishlist"><i class="fas fa-heart"></i> Wishlist</a></li>
+                    <li><a href="#orders"><i class="fas fa-box"></i> Orders</a></li>
+            </nav>
+        </header>
+
+    <!-- Main Content -->
+    <main>
+        <!-- Banner Section -->
+        <section id="home" class="banner">
+            <h1>Welcome to ShopEase</h1>
+            <p>Shop for your favorite items with ease.</p>
+        </section>
+
+
+        <!-- Products Section -->
+        <section id="products">
+            <h2>Our Products</h2>
+</section>
+    <!-- Orders Section -->
+    <section id="orders" class="hidden">
+        <h2>My Orders</h2>
+        <div id="orders-container"></div>
+    </section>
+            
+            <!-- Search and Filter Controls -->
+            <div class="controls-container">
+                <div class="search-bar">
+                    <input type="text" id="search-bar" placeholder="Search products...">
+                    <i class="fas fa-search"></i>
+                </div>
+
+                <div class="category-filter">
+                    <button class="category-btn active" data-category="all">All</button>
+                    <button class="category-btn" data-category="electronics">Electronics</button>
+                    <button class="category-btn" data-category="beauty-products">Beauty</button>
+                    <button class="category-btn" data-category="pharmacy">Pharmacy</button>
+                    <button class="category-btn" data-category="fashion">Fashion</button>
+                    <button class="category-btn" data-category="grocery">Grocery</button>
+                </div>
+
+                <div class="sort-controls">
+                    <select id="sort-select">
+                        <option value="default">Sort by</option>
+                        <option value="price-low">Price: Low to High</option>
+                        <option value="price-high">Price: High to Low</option>
+                        <option value="name">Name: A to Z</option>
+                    </select>
+                    <div class="price-filter">
+                        <input type="number" id="min-price" placeholder="Min Price">
+                        <input type="number" id="max-price" placeholder="Max Price">
+                        <button id="apply-price-filter">Apply</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Product Grid -->
+            <div class="product-grid">
+                <!-- Your existing product cards with added wishlist buttons -->
+                <div class="product-card" data-category="electronics" data-price="50000">
+                    <button class="wishlist-btn" title="Add to Wishlist">
+                        <i class="far fa-heart"></i>
+                    </button>
+                    <img src="1.0.jpg" alt="Electric Heater">
+                    <h3>OTG OVEN</h3>
+                    <p>RS:5000</p>
+                    <button class="add-to-cart">Add to Cart</button>
+                </div>
+                <div class="product-card" data-category="electronics">
+                    <button class="wishlist-btn" title="Add to Wishlist">
+                        <i class="far fa-heart"></i>
+                    </button>
+                    <img src="3.jpg" alt="product 2">
+                    <h3>printer</h3>
+                    <p>RS:10000</p>
+                    <button class="add-to-cart">Add to cart</button>
+                </div>
+                <div class="product-card" data-category="electronics">
+                    <button class="wishlist-btn" title="Add to Wishlist">
+                        <i class="far fa-heart"></i>
+                    </button>
+                    <img src="5.0.jpg" alt="product 3">
+                    <h3>Intax mini camera</h3>
+                    <p>Rs:6900</p>
+                    <button class="add-to-cart">Add to cart</button>
+                </div>
+                <div class="product-card" data-category="electronics">
+                    <button class="wishlist-btn" title="Add to Wishlist">
+                        <i class="far fa-heart"></i>
+                    </button>
+                    <img src="6.jpg" alt="product 4">
+                    <h3>Samsumg smart fit band</h3>
+                    <p>Rs:9000</p>
+                    <button class="add-to-cart">Add to cart</button>
+                </div>
+                <div class="product-card" data-category="electronics">
+                    <button class="wishlist-btn" title="Add to Wishlist">
+                        <i class="far fa-heart"></i>
+                    </button>
+                  <img src="9.o.jpg" alt="product 5">
+                  <h3>Boat airdopes 141</h3>
+                  <p>Rs:999</p>
+                  <button class="add-to-cart">Add to cart</button>
+              </div>
+              <div class="product-card" data-category="electronics">
+                <button class="wishlist-btn" title="Add to Wishlist">
+                    <i class="far fa-heart"></i>
+                </button>
+                <img src="8.0.jpeg" alt="product 6">
+                <h3>Zebronics ZEB-COUNTY 3W Wireless Bluetooth Speaker</h3>
+                <p>Rs:500</p>
+                <button class="add-to-cart">Add to cart</button>
+            </div>
+            <div class="product-card" data-category="electronics">
+                <button class="wishlist-btn" title="Add to Wishlist">
+                    <i class="far fa-heart"></i>
+                </button>
+              <img src="9.jpg" alt="product 7">
+              <h3>JBL Headphones</h3>
+              <p>Rs:3000></p>
+              <button class="add-to-cart">Add to cart</button>
+          </div>
+          <div class="product-card" data-category="electronics">
+            <button class="wishlist-btn" title="Add to Wishlist">
+                <i class="far fa-heart"></i>
+            </button>
+            <img src="11.jpg" alt="product 8">
+            <h3>KW10 smartwatch</h3>
+            <p>RS:1100</p>
+            <button class="add-to-cart">Add to cart</button>
+          </div>
+        <div class="product-card" data-category="electronics">
+            <button class="wishlist-btn" title="Add to Wishlist">
+                <i class="far fa-heart"></i>
+            </button>
+          <img src="12.webp" alt="product 9">
+          <h3>Boat smartwatch</h3>
+          <p>RS:1300</p>
+          <button class="add-to-cart">Add to cart</button>
+        </div>
+        <div class="product-card" data-category="electronics">
+            <button class="wishlist-btn" title="Add to Wishlist">
+                <i class="far fa-heart"></i>
+            </button>
+          <img src="10.o.jpg" alt="product 10">
+          <h3>boat wired earphones</h3>
+          <p>RS:400</p>
+          <button class="add-to-cart">Add to cart</button>
+        </div>
+                <div class="product-card" data-category="beauty-products">
+                    <button class="wishlist-btn" title="Add to Wishlist">
+                        <i class="far fa-heart"></i>
+                    </button>
+                    <img src="n.webp" alt="product 1">
+                    <h3>GARNIER FACE SHEET MASK</h3>
+                    <p>RS:100</p>
+                    <button class="add-to-cart">Add to cart</button>
+                </div>
+                <div class="product-card" data-category="beauty-products">
+                    <button class="wishlist-btn" title="Add to Wishlist">
+                        <i class="far fa-heart"></i>
+                    </button>
+                    <img src="o.webp" alt="product 2">
+                    <h3>LAKME FACE SERUM</h3>
+                    <p>RS:300</p>
+                    <button class="add-to-cart">Add to cart</button>
+                </div>
+                <div class="product-card" data-category="beauty-products">
+                    <button class="wishlist-btn" title="Add to Wishlist">
+                        <i class="far fa-heart"></i>
+                    </button>
+                    <img src="T!.jpg" alt="product 3">
+                    <h3>MAMAEARTH UBTAN FACE MASK</h3>
+                    <p>RS:500</p>
+                    <button class="add-to-cart">Add to cart</button>
+                </div>
+                <div class="product-card" data-category="beauty-products">
+                    <button class="wishlist-btn" title="Add to Wishlist">
+                        <i class="far fa-heart"></i>
+                    </button>
+                    <img src="T.webp" alt="product 4">
+                    <h3>WOW VITAMIN C FACEWASH</h3>
+                    <p>RS:700</p>
+                    <button class="add-to-cart">Add to cart</button>
+                </div>
+                <div class="product-card" data-category="beauty-products">
+                    <button class="wishlist-btn" title="Add to Wishlist">
+                        <i class="far fa-heart"></i>
+                    </button>
+                  <img src="R.jpg" alt="product 5">
+                  <h3>CERAVE SUNSCREEN</h3>
+                  <p>RS:500</p>
+                  <button class="add-to-cart">Add to cart</button>
+              </div>
+              <div class="product-card" data-category="beauty-products">
+                <button class="wishlist-btn" title="Add to Wishlist">
+                    <i class="far fa-heart"></i>
+                </button>
+                <img src="S.jpg" alt="product 6">
+                <h3>DOVE BODY SCRUB</h3>
+                <p>RS:600</p>
+                <button class="add-to-cart">Add to cart</button>
+            </div>
+            <div class="product-card" data-category="beauty-products">
+                <button class="wishlist-btn" title="Add to Wishlist">
+                    <i class="far fa-heart"></i>
+                </button>
+              <img src="Q.webp" alt="product 7">
+              <h3>NIVEA FACE MOISTURIZER</h3>
+              <p>RS:250</p>
+              <button class="add-to-cart">Add to cart</button>
+          </div>
+          <div class="product-card" data-category="beauty-products">
+            <button class="wishlist-btn" title="Add to Wishlist">
+                <i class="far fa-heart"></i>
+            </button>
+            <img src="U.webp" alt="product 8">
+            <h3>FIAMA SHOWER GEL</h3>
+            <p>RS:500</p>
+            <button class="add-to-cart">Add to cart</button>
+        </div>
+                <div class="product-card" data-category="pharmacy">
+                    <button class="wishlist-btn" title="Add to Wishlist">
+                        <i class="far fa-heart"></i>
+                    </button>
+                    <img src="a.jpg" alt="medicine 1">
+                    <h3>VITAMIN D CAPUSELS</h3>
+                    <p>RS:500</p>
+                    <button class="add-to-cart">Add to cart</button>
+                </div>
+                <div class="product-card" data-category="pharmacy">
+                    <button class="wishlist-btn" title="Add to Wishlist">
+                        <i class="far fa-heart"></i>
+                    </button>
+                    <img src="B.jpg" alt="medicine 2">
+                    <h3>CALCIUM TABLETS</h3>
+                    <p>RS:350</p>
+                    <button class="add-to-cart">Add to cart</button>
+                </div>
+                <div class="product-card" data-category="pharmacy">
+                    <button class="wishlist-btn" title="Add to Wishlist">
+                        <i class="far fa-heart"></i>
+                    </button>
+                    <img src="C.jpg" alt="medicine 3">
+                    <h3>SYRUP</h3>
+                    <p>RS:210</p>
+                    <button class="add-to-cart">Add to cart</button>
+                </div>
+                <div class="product-card" data-category="pharmacy">
+                    <button class="wishlist-btn" title="Add to Wishlist">
+                        <i class="far fa-heart"></i>
+                    </button>
+                    <img src="D.jpg" alt="medicine 4">
+                    <h3>VITAMIN C CAPUSELS</h3>
+                    <p>RS:300</p>
+                    <button class="add-to-cart">Add to cart</button>
+                </div>
+                <div class="product-card" data-category="pharmacy">
+                    <button class="wishlist-btn" title="Add to Wishlist">
+                        <i class="far fa-heart"></i>
+                    </button>
+                  <img src="E.jpg" alt="medicine 5">
+                  <h3>MEMORY BOOSTER SYRUP</h3>
+                  <p>RS:160</p>
+                  <button class="add-to-cart">Add to cart</button>
+              </div>
+              <div class="product-card" data-category="pharmacy">
+                <button class="wishlist-btn" title="Add to Wishlist">
+                    <i class="far fa-heart"></i>
+                </button>
+                <img src="F.jpg" alt="medicine 6">
+                <h3>NUTIVA FORTE</h3>
+                <p>RS:270</p>
+                <button class="add-to-cart">Add to cart</button>
+              </div>
+            
+                <div class="product-card" data-category="fashion">
+                    <button class="wishlist-btn" title="Add to Wishlist">
+                        <i class="far fa-heart"></i>
+                    </button>
+                    <img src="G.jpg" alt="Product 1">
+                    <h3>NIKE SHOE</h3>
+                    <p>RS:5000</p>
+                    <button class="add-to-cart">Add to cart</button>
+                </div>
+                <div class="product-card" data-category="fashion">
+                    <button class="wishlist-btn" title="Add to Wishlist">
+                        <i class="far fa-heart"></i>
+                    </button>
+                    <img src="H.jpg" alt="product 2">
+                    <h3>PUMA SHOE</h3>
+                    <p>RS:8000</p>
+                    <button class="add-to-cart">Add to cart</button>
+                </div>
+                <div class="product-card" data-category="fashion">
+                    <button class="wishlist-btn" title="Add to Wishlist">
+                        <i class="far fa-heart"></i>
+                    </button>
+                    <img src="i1.jpg" alt="Product 3">
+                    <h3>BLACK HOODIE</h3>
+                    <p>RS:1100</p>
+                    <button class="add-to-cart">Add to cart</button>
+                </div>
+                <div class="product-card" data-category="fashion">
+                    <button class="wishlist-btn" title="Add to Wishlist">
+                        <i class="far fa-heart"></i>
+                    </button>
+                    <img src="j1.jpg" alt="product 4">
+                    <h3>WHITE HOODIE</h3>
+                    <p>RS:1000</p>
+                    <button class="add-to-cart">Add to cart</button>
+                </div>
+                <div class="product-card" data-category="fashion">
+                    <button class="wishlist-btn" title="Add to Wishlist">
+                        <i class="far fa-heart"></i>
+                    </button>
+                  <img src="l1.jpg" alt="product 5">
+                  <h3>DENIM SHORTS</h3>
+                  <p>RS:800</p>
+                  <button class="add-to-cart">Add to cart</button>
+              </div>
+              <div class="product-card" data-category="fashion">
+                <button class="wishlist-btn" title="Add to Wishlist">
+                    <i class="far fa-heart"></i>
+                </button>
+                <img src="m1.jpg" alt="product 6">
+                <h3>DENIM SKIRTS</h3>
+                <p>RS:950</p>
+                <button class="add-to-cart">Add to cart</button>
+            </div>
+            <div class="product-card" data-category="fashion">
+                <button class="wishlist-btn" title="Add to Wishlist">
+                    <i class="far fa-heart"></i>
+                </button>
+              <img src="k1.jpeg" alt="product 7">
+              <h3>MENS JEANS</h3>
+              <p>RS:2000</p>
+              <button class="add-to-cart">Add to cart</button>
+          </div>
+          <div class="product-card" data-category="fashion">
+            <button class="wishlist-btn" title="Add to Wishlist">
+                <i class="far fa-heart"></i>
+            </button>
+            <img src="v.jpg" alt="product 8">
+            <h3>KIDS SHOE</h3>
+            <p>RS:4000</p>
+            <button class="add-to-cart">Add to cart</button>
+        </div>
+        <div class="product-card" data-category="fashion">
+            <button class="wishlist-btn" title="Add to Wishlist">
+                <i class="far fa-heart"></i>
+            </button>
+          <img src="w.webp" alt="product 9">
+          <h3>BLACK T-SHIRT</h3>
+          <p>RS:500</p>
+          <button class="add-to-cart">Add to cart</button>
+        </div>
+        <div class="product-card" data-category="fashion">
+            <button class="wishlist-btn" title="Add to Wishlist">
+                <i class="far fa-heart"></i>
+            </button>
+          <img src="x.webp" alt="product 10">
+          <h3>WHITE T-SHIRT</h3>
+          <p>RS:500</p>
+          <button class="add-to-cart">Add to cart</button>
+        </div>
+        <div class="product-card" data-category="fashion">
+            <button class="wishlist-btn" title="Add to Wishlist">
+                <i class="far fa-heart"></i>
+            </button>
+          <img src="y1.avif" alt="product 11">
+          <h3>WOMENS JEANS</h3>
+          <p>RS:2000</p>
+          <button class="add-to-cart">Add to cart</button>
+        </div>
+        <div class="product-card" data-category="fashion">
+            <button class="wishlist-btn" title="Add to Wishlist">
+                <i class="far fa-heart"></i>
+            </button>
+          <img src="z.jpg" alt="product 12">
+          <h3>BLACK JEANS</h3>
+          <p>RS:2500</p>
+          <button class="add-to-cart">Add to cart</button>
+        </div>
+                <div class="product-card" data-category="grocery">
+                    <button class="wishlist-btn" title="Add to Wishlist">
+                        <i class="far fa-heart"></i>
+                    </button>
+                    <img src="11.o.jpg" alt="product 1">
+                    <h3>NESTLE MAGGIE</h3>
+                    <p>RS:40</p>
+                    <button class="add-to-cart">Add to cart</button>
+                </div>
+                <div class="product-card" data-category="grocery">
+                    <button class="wishlist-btn" title="Add to Wishlist">
+                        <i class="far fa-heart"></i>
+                    </button>
+                    <img src="12.p.jpg" alt="product 2">
+                    <h3>SUHANA GARAM MASLA</h3>
+                    <p>RS:100</p>
+                    <button class="add-to-cart">Add to cart</button>
+                </div>
+                <div class="product-card" data-category="grocery">
+                    <button class="wishlist-btn" title="Add to Wishlist">
+                        <i class="far fa-heart"></i>
+                    </button>
+                    <img src="13.jpg" alt="product 3">
+                    <h3>HALIDRAMS BOONDI</h3>
+                    <p>RS:80</p>
+                    <button class="add-to-cart">Add to cart</button>
+                </div>
+                <div class="product-card" data-category="grocery">
+                    <button class="wishlist-btn" title="Add to Wishlist">
+                        <i class="far fa-heart"></i>
+                    </button>
+                    <img src="15.jpg" alt="product 4">
+                    <h3>TATA SALT</h3>
+                    <p>RS:250</p>
+                    <button class="add-to-cart">Add to cart</button>
+                </div>   
+                <div class="product-card" data-category="grocery">
+                    <button class="wishlist-btn" title="Add to Wishlist">
+                        <i class="far fa-heart"></i>
+                    </button>
+                  <img src="th (6).jpeg" alt="product 5">
+                  <h3>MOONG DAL</h3>
+                  <p>RS:20</p>
+                  <button class="add-to-cart">Add to cart</button>
+              </div>
+              <div class="product-card" data-category="grocery">
+                <button class="wishlist-btn" title="Add to Wishlist">
+                    <i class="far fa-heart"></i>
+                </button>
+                <img src="knife.jpg" alt="product 6">
+                <h3>PUNJABI TADKA</h3>
+                <p>RS:20</p>
+                <button class="add-to-cart">Add to cart</button>
+            </div>
+            <div class="product-card" data-category="grocery">
+                <button class="wishlist-btn" title="Add to Wishlist">
+                    <i class="far fa-heart"></i>
+                </button>
+              <img src="!.webp" alt="product 7">
+              <h3>KETCHUP</h3>
+              <p>RS:265</p>
+              <button class="add-to-cart">Add to cart</button>
+          </div>
+          <div class="product-card" data-category="grocery">
+            <button class="wishlist-btn" title="Add to Wishlist">
+                <i class="far fa-heart"></i>
+            </button>
+            <img src="@.webp" alt="product 8">
+            <h3>NUTRI CHOICE</h3>
+            <p>RS:40</p>
+            <button class="add-to-cart">Add to cart</button>
+        </div>
+        <div class="product-card" data-category="grocery">
+            <button class="wishlist-btn" title="Add to Wishlist">
+                <i class="far fa-heart"></i>
+            </button>
+          <img src="house.jpg" alt="product 9">
+          <h3>OREO</h3>
+          <p>RS:10</p>
+          <button class="add-to-cart">Add to cart</button>
+        </div>
+        <div class="product-card" data-category="grocery">
+            <button class="wishlist-btn" title="Add to Wishlist">
+                <i class="far fa-heart"></i>
+            </button>
+          <img src="$.jpg" alt="product 10">
+          <h3>MONACO</h3>
+          <p>RS:30</p>
+          <button class="add-to-cart">Add to cart</button>
+        </div>
+        <div class="product-card" data-category="grocery">
+            <button class="wishlist-btn" title="Add to Wishlist">
+                <i class="far fa-heart"></i>
+            </button>
+          <img src="chop.jpg" alt="product 11">
+          <h3>MAZA</h3>
+          <p>RS:50</p>
+          <button class="add-to-cart">Add to cart</button>
+        </div>
+        <div class="product-card" data-category="grocery">
+            <button class="wishlist-btn" title="Add to Wishlist">
+                <i class="far fa-heart"></i>
+            </button>
+          <img src="&.webp" alt="product 12">
+          <h3>REAL JUICE</h3>
+          <p>RS:120</p>
+          <button class="add-to-cart">Add to cart</button>
+        </div>
+            </div>
+        </section>
+
+        <!-- Wishlist Section -->
+        <section id="wishlist" class="hidden">
+            <h2>My Wishlist</h2>
+            <div id="wishlist-items" class="product-grid"></div>
+        </section>
+        
+        <!-- Cart Section -->
+        <section id="cart">
+            <h2>Shopping Cart</h2>
+            <div class="cart-container">
+                <div id="cart-items"></div>
+                <div class="cart-summary">
+                    <p>Total: Rs <span id="total-price">0.00</span></p>
+                    <button id="proceed-to-checkout" class="primary-button">Proceed to Checkout</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Orders Section -->
+        <section id="orders" class="hidden">
+            <h2>My Orders</h2>
+            <div id="orders-container"></div>
+        </section>
+
+        <!-- Checkout Section -->
+<div class="form-section">
+    <h3>Payment Information</h3>
+    <div id="card-element"></div>
+    <div id="card-errors" role="alert"></div>
+    <button type="submit" id="submit-payment">
+        <span id="button-text">Pay Now</span>
+        <span id="spinner" class="hidden"></span>
+    </button>
+</div>
+        <section id="checkout" class="hidden">
+            <h2>Checkout</h2>
+            <div class="checkout-container">
+                <div class="order-summary">
+                    <h3>Order Summary</h3>
+                    <div id="checkout-items"></div>
+                    <div class="total">
+                        <span>Total:</span>
+                        <span id="checkout-total">Rs 0.00</span>
+                    </div>
+                </div>
+
+                <form id="payment-form">
+                    <div class="form-section">
+                        <h3>Shipping Information</h3>
+                        <div class="form-group">
+                            <label for="name">Full Name</label>
+                            <input type="text" id="name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="address">Address</label>
+                            <input type="text" id="address" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">Phone</label>
+                            <input type="tel" id="phone" required>
+                        </div>
+                    </div>
+
+                    <div class="form-section">
+                        <h3>Payment Information</h3>
+                        <div id="card-element"></div>
+                        <div id="card-errors" role="alert"></div>
+                    </div>
+
+                    <button type="submit" id="submit-payment">
+                        <span id="button-text">Pay Now</span>
+                        <span id="spinner" class="hidden">Processing...</span>
+                    </button>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer Section -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>About ShopEase</h3>
+                <p>Your one-stop shop for all your needs. We provide quality products at the best prices.</p>
+            </div>
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#products">Products</a></li>
+                    <li><a href="#cart">Cart</a></li>
+                    <li><a href="#wishlist">Wishlist</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Contact Us</h3>
+                <ul>
+                    <li><i class="fas fa-phone"></i> +1 234 567 890</li>
+                    <li><i class="fas fa-envelope"></i> support@shopease.com</li>
+                    <li><i class="fas fa-map-marker-alt"></i> 123 Shop Street, City</li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Follow Us</h3>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-linkedin"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 ShopEase. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Custom JavaScript -->
+    <script src="op.js"></script> 
+</body>
+</html>
